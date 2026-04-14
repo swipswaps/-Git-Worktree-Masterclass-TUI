@@ -56,6 +56,18 @@ export class CoreEngine {
       case 'graph':
         this.showGraph();
         break;
+      case 'loom':
+        this.startLoomSimulation();
+        break;
+      case 'test-parallel':
+        this.startTestParallelSimulation();
+        break;
+      case 'tmux-sim':
+        this.startTmuxSimulation();
+        break;
+      case 'tools':
+        this.showTools();
+        break;
       case 'git':
         if (args[0] === 'worktree') {
           this.showGitHelp();
@@ -95,7 +107,11 @@ export class CoreEngine {
   conflict      - Start the conflict resolution assistant
   simulate-conflict - Simulate merge conflicts (for testing)
   graph         - Visualize the worktree topology
-  lesson [1-4]  - Start an interactive lesson with quiz
+  loom          - Simulate an agentic AI workflow using worktrees
+  test-parallel - Simulate running tests in a background worktree
+  tmux-sim      - Simulate a persistent agent session using tmux
+  tools         - View a directory of working tools and installation guides
+  lesson [1-5]  - Start an interactive lesson with quiz
   git worktree  - Learn about git worktree commands
   techniques    - View advanced communication & negotiation techniques
   lesson-plan   - View the social interaction lesson plan
@@ -272,6 +288,87 @@ export class CoreEngine {
     } else {
       this.adapter.log({ type: 'error', text: 'Failed to list worktrees.' });
     }
+  }
+
+  private startLoomSimulation(): void {
+    this.adapter.log({ type: 'success', text: '--- AGENTIC WORKFLOW SIMULATION (LOOM) ---' });
+    this.adapter.log({ type: 'info', text: 'Initializing AI Agent "Loom-1"...' });
+    this.adapter.log({ type: 'response', text: 'Task: "Fix bug in src/core/engine.ts"' });
+    this.adapter.log({ type: 'info', text: 'Creating isolated worktree at .looms/fix-bug...' });
+    
+    setTimeout(() => {
+      this.adapter.log({ type: 'success', text: 'Worktree created. Agent is now analyzing code...' });
+      setTimeout(() => {
+        this.adapter.log({ type: 'info', text: 'Agent found the issue. Generating Plan...' });
+        this.adapter.log({ type: 'response', text: 'Plan: 1. Add null check. 2. Update types. 3. Run tests.' });
+        setTimeout(() => {
+          this.adapter.log({ type: 'info', text: 'Executing Plan in isolated environment...' });
+          setTimeout(() => {
+            this.adapter.log({ type: 'success', text: 'Execution complete. Running tests...' });
+            setTimeout(() => {
+              this.adapter.log({ type: 'success', text: 'Tests passed! Loom-1 is ready for review.' });
+              this.adapter.log({ type: 'info', text: 'Persisting analysis and plans to GitHub Issue #42...' });
+              this.adapter.log({ type: 'response', text: 'Run "git worktree list" to see the active Loom.' });
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  }
+
+  private startTestParallelSimulation(): void {
+    this.adapter.log({ type: 'success', text: '--- PARALLEL TESTING SIMULATION ---' });
+    this.adapter.log({ type: 'info', text: 'Current task: "Refactor Auth Logic"' });
+    this.adapter.log({ type: 'response', text: 'Problem: Integration tests take 10 minutes to run.' });
+    this.adapter.log({ type: 'info', text: 'Solution: Spin up a worktree for tests.' });
+    this.adapter.log({ type: 'command', text: 'git worktree add ../test-runner main' });
+    
+    setTimeout(() => {
+      this.adapter.log({ type: 'success', text: 'Worktree created at ../test-runner' });
+      this.adapter.log({ type: 'command', text: 'cd ../test-runner && npm test' });
+      this.adapter.log({ type: 'info', text: 'Tests are now running in the background...' });
+      this.adapter.log({ type: 'success', text: 'You can now switch back to the main tree and keep coding!' });
+      this.adapter.log({ type: 'command', text: 'cd -' });
+      this.adapter.log({ type: 'response', text: 'Productivity maintained. No waiting for CI.' });
+    }, 1000);
+  }
+
+  private startTmuxSimulation(): void {
+    this.adapter.log({ type: 'success', text: '--- TMUX + CLAUDE CODE SIMULATION ---' });
+    this.adapter.log({ type: 'info', text: 'Starting persistent agent session...' });
+    this.adapter.log({ type: 'command', text: 'tmux new -s claude-session' });
+    
+    setTimeout(() => {
+      this.adapter.log({ type: 'success', text: 'New tmux session "claude-session" created.' });
+      this.adapter.log({ type: 'command', text: 'claude' });
+      this.adapter.log({ type: 'response', text: 'Claude Code is now running in a persistent terminal.' });
+      this.adapter.log({ type: 'info', text: 'You can detach (Ctrl+B, D) and the agent will keep working.' });
+      this.adapter.log({ type: 'success', text: 'Automation: n8n can now send commands to this tmux session.' });
+    }, 1000);
+  }
+
+  private showTools(): void {
+    this.adapter.log({ type: 'success', text: '--- DIRECTORY OF WORKING TOOLS ---' });
+    this.adapter.log({
+      type: 'response',
+      text: `1. Archon (Deterministic AI Coding)
+   - URL: https://github.com/coleam00/archon
+   - Use: Build repeatable AI coding harnesses.
+   - Install: git clone https://github.com/coleam00/archon
+
+2. iloom-cli (Multi-Agent Workflows)
+   - URL: https://github.com/iloom-ai/iloom-cli
+   - Use: Run tasks in isolated "Looms" (worktrees).
+   - Install: npm install -g @iloom/cli
+
+3. n8n-nodes-tmux-claudecode (Automation)
+   - URL: https://github.com/sirmrmarty/n8n-nodes-tmux-claudecode
+   - Use: Automate Claude Code sessions using tmux and n8n.
+
+4. Claude Code (Agentic CLI)
+   - URL: https://github.com/anthropic-ai/claude-code
+   - Use: Official Anthropic agentic CLI.`
+    });
   }
 
   private showGitHelp(): void {

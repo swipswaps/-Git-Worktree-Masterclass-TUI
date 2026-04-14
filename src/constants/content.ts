@@ -60,6 +60,32 @@ When working in a "crowd-sourced" model, conflicts are inevitable—not just in 
 - **Labeling**: "It sounds like... It seems like... It looks like..." — Chris Voss
 - **Steelmanning**: "Restate your opponent’s position so clearly… they say, 'Thanks, I wish I’d thought of putting it that way.'" — Daniel Dennett
     `
+  },
+  {
+    id: 5,
+    title: "Agentic Development & AI Workflows",
+    content: `
+Git worktrees are the "superpower" of agentic development. When using AI coding agents (Claude Code, Cursor, GitHub Copilot), worktrees provide the necessary isolation to prevent context contamination.
+
+# The Agentic Workflow:
+1. **Isolation**: Spin up a new worktree for an AI agent to solve a specific issue.
+2. **Parallelism**: Have multiple agents working on different features in parallel worktrees.
+3. **Deterministic Coding**: Tools like Archon use worktrees to make AI coding repeatable and verifiable by snapshotting the environment.
+4. **Looming**: iloom-cli runs tasks in isolated "Looms" (worktrees) to persist analysis, plans, and decisions to your issue tracker (Jira/GitHub) without polluting your main environment.
+
+# Key Tools & Installation:
+- **Archon**: Harness builder for deterministic AI coding.
+  - *Install*: \`git clone https://github.com/coleam00/archon && cd archon && npm install\`
+- **iloom-cli**: Multi-agent workflow system.
+  - *Install*: \`npm install -g @iloom/cli\`
+- **Claude Code + tmux**: Automate agent sessions.
+  - *Install*: \`npm install -g @anthropic-ai/claude-code\`
+
+# Verbatim References:
+- "Git worktrees are a superpower for agentic dev... they allow agents to work in a clean room while you maintain your flow in the main tree." — [Reddit /r/ClaudeCode](https://www.reddit.com/r/ClaudeCode/comments/1pzczjn/git_worktrees_are_a_superpower_for_agentic_dev/)
+- "The magic of git worktree is that it allows me to multitask despite tests taking forever to run. I can just spin up a new worktree and keep coding." — [ahferroin7, Dev.to](https://dev.to/ahferroin7/the-magic-of-git-worktree-how-i-multitask-despite-tests-taking-forever-to-run-5fe4)
+- "Using git-worktree with AI coding tools like Cursor and Claude Code boosts productivity by isolating agent context." — [satococoa, Dev.to](https://dev.to/satococoa/boost-productivity-using-git-worktree-with-ai-coding-tools-2lln)
+    `
   }
 ];
 
@@ -168,6 +194,26 @@ export const QUIZ = [
           "Ignoring the argument entirely"
         ],
         answer: "Building the strongest possible version of an opponent's argument"
+      }
+    ]
+  },
+  {
+    lessonId: 5,
+    questions: [
+      {
+        text: "Why are Git worktrees considered a 'superpower' for AI agentic development?",
+        options: [
+          "They make the AI faster",
+          "They provide isolation to prevent context contamination",
+          "They replace the need for Git branches",
+          "They allow the AI to push code without review"
+        ],
+        answer: "They provide isolation to prevent context contamination"
+      },
+      {
+        text: "Which tool uses 'Looms' to run tasks in isolated workflows?",
+        options: ["Archon", "iloom-cli", "Claude Code", "tmux"],
+        answer: "iloom-cli"
       }
     ]
   }

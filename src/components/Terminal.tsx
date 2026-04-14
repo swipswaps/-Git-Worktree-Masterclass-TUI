@@ -148,6 +148,15 @@ export const Terminal: React.FC = () => {
         <button onClick={() => engine.handleInput('lesson 4')} className="flex items-center gap-2 text-xs text-zinc-400 hover:text-emerald-400 transition-colors text-left">
           <MessageSquare size={14} /> Lesson 4: Conflict
         </button>
+        <button onClick={() => engine.handleInput('lesson 5')} className="flex items-center gap-2 text-xs text-zinc-400 hover:text-emerald-400 transition-colors text-left">
+          <Command size={14} /> Lesson 5: Agentic
+        </button>
+        <button onClick={() => engine.handleInput('tools')} className="flex items-center gap-2 text-xs text-zinc-400 hover:text-emerald-400 transition-colors text-left">
+          <Info size={14} /> Tools Directory
+        </button>
+        <button onClick={() => engine.handleInput('test-parallel')} className="flex items-center gap-2 text-xs text-zinc-400 hover:text-emerald-400 transition-colors text-left">
+          <Command size={14} /> Test Parallel
+        </button>
         <button onClick={() => engine.handleInput('paper')} className="flex items-center gap-2 text-xs text-zinc-400 hover:text-emerald-400 transition-colors text-left">
           <Info size={14} /> White Paper
         </button>

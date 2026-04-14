@@ -124,6 +124,40 @@ public static validateBranch(branch: string): { valid: boolean; error?: string }
 }
 ```
 
+### 5. Agentic Development & AI Workflows
+**Concept**: Using worktrees to isolate AI agents and prevent context contamination.
+> *"Git worktrees are a superpower for agentic dev... they allow agents to work in a clean room while you maintain your flow in the main tree."*
+> — [Reddit /r/ClaudeCode](https://www.reddit.com/r/ClaudeCode/comments/1pzczjn/git_worktrees_are_a_superpower_for_agentic_dev/)
+
+**Implementation in Code:**
+The `loom` command simulates an AI agent workflow using isolated worktrees, while `tmux-sim` demonstrates persistent session management.
+```typescript
+// src/core/engine.ts
+private startLoomSimulation(): void {
+  this.adapter.log({ type: 'info', text: 'Creating isolated worktree at .looms/fix-bug...' });
+  // ... simulated agent workflow ...
+}
+```
+
+**Working Code Example (Automation Script):**
+```bash
+#!/bin/bash
+# Automatically spin up a worktree for an AI agent
+BRANCH_NAME="agent/fix-issue-1"
+WORKTREE_PATH="../worktrees/$BRANCH_NAME"
+
+git worktree add -b $BRANCH_NAME $WORKTREE_PATH
+cd $WORKTREE_PATH
+# Start Claude Code in a tmux session for persistence
+tmux new -d -s $BRANCH_NAME "claude"
+echo "Agent is now working in $WORKTREE_PATH inside tmux session $BRANCH_NAME"
+```
+
+**Referenced Tools:**
+- **Archon**: Deterministic AI coding harness. [github.com/coleam00/archon](https://github.com/coleam00/archon)
+- **iloom-cli**: Multi-agent workflow system. [github.com/iloom-ai/iloom-cli](https://github.com/iloom-ai/iloom-cli)
+- **n8n-nodes-tmux-claudecode**: Claude Code automation. [github.com/sirmrmarty/n8n-nodes-tmux-claudecode](https://github.com/sirmrmarty/n8n-nodes-tmux-claudecode)
+
 ---
 
 ## ⌨️ Commands Reference
@@ -133,7 +167,11 @@ public static validateBranch(branch: string): { valid: boolean; error?: string }
 - `conflict`: Start the conflict resolution assistant (scans real files in CLI).
 - `simulate-conflict`: Simulate merge conflicts for testing in the Web TUI.
 - `graph`: Visualize your worktree topology.
-- `lesson [1-4]`: Start an interactive lesson with a mastery quiz.
+- `loom`: Simulate an agentic AI workflow using worktrees.
+- `test-parallel`: Simulate running tests in a background worktree.
+- `tmux-sim`: Simulate a persistent agent session using tmux.
+- `tools`: View a directory of working tools and installation guides.
+- `lesson [1-5]`: Start an interactive lesson with a mastery quiz.
 - `git worktree`: View git worktree command reference.
 - `techniques`: View advanced communication techniques.
 - `lesson-plan`: View the social interaction lesson plan.
